@@ -16,6 +16,7 @@ int *getArrayFromInput()
     int *arr2 = (int *)malloc(1000 * sizeof(int));
     int idx = 0;  // Index to keep track of where to store numbers in arr1 and arr2
     int *arr3 = (int *)malloc(1000 * sizeof(int));
+    int *arr4 = (int *)malloc(1000 * sizeof(int));
 
     file_ptr = fopen("input.txt", "r");
 
@@ -45,12 +46,23 @@ int *getArrayFromInput()
     for(int i = 0; i < 1000; i++) {
         arr3[i] = abs(arr1[i]-arr2[i]);
     }
+    
+
+    for(int i = 0; i < 1000; i++) {
+        int counter = 0;
+        for(int j = 0; j < 1000; j++) {
+            if(arr1[i] == arr2[j]) {
+                counter++;
+            }
+        }
+        arr4[i] = arr1[i]*counter;
+    }
 
     free(arr1);
     free(arr2);
 
 
-    return arr3;
+    return arr4; //arr3 for part1
 }
 
 void main()
@@ -62,6 +74,7 @@ void main()
     for(int i = 0; i < 1000; i++) {
         sum += arr[i];
     }
-    printf("Array is %d", sum);
-    //printf("Array is %d", arr[0]);
+    //printf("sum of array is %d", sum); //part 1
+    printf("sum of similarity score is %d", sum); //part 2
+
 }
